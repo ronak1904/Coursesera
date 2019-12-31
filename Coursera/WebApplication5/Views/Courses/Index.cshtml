@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebApplication5.Models.Course>
+
+@{
+    ViewBag.Title = "Index";
+}
+	<head>
+		<link rel="stylesheet" href="@Url.Content("~/Content/mystyle.css")" />
+
+	</head>
+<h2>
+
+    @Html.ActionLink("Create New", "Create")
+
+    </h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category)
+        </td>
+		<td>
+			@Html.ActionLink("Edit", "Edit", new { id = item.courseId })&nbsp;&nbsp;&nbsp;&nbsp;
+
+			@Html.ActionLink("Delete", "Delete", new { id = item.courseId }) &nbsp;&nbsp;&nbsp;&nbsp;
+			@Html.ActionLink("Create Test", "Create", "Tests", new { id = item.courseId }, null)&nbsp;&nbsp;&nbsp;&nbsp;
+			@Html.ActionLink("Add Files", "Index", "FileUpload", new { id = item.courseId }, null)&nbsp;&nbsp;&nbsp;&nbsp;
+			@Html.ActionLink("Add Videoes", "Index", "Video", new { id = item.courseId }, null)&nbsp;&nbsp;&nbsp;&nbsp;
+			@Html.ActionLink("View Test", "Index", "Tests", new { id = item.courseId }, null)&nbsp;&nbsp;&nbsp;&nbsp;
+			@Html.ActionLink("View Files", "ViewVideo", "FileUpload", new { id = item.courseId }, null)&nbsp;&nbsp;&nbsp;&nbsp;
+			@Html.ActionLink("View Videoes", "ViewVideo", "Video", new { id = item.courseId }, null)&nbsp;&nbsp;&nbsp;&nbsp;
+
+		</td>
+    </tr>
+}
+
+</table>

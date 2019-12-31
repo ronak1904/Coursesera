@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+	<head>
+		<link rel="stylesheet" href="@Url.Content("~/Content/mystyle.css")" />
+
+	</head>
+
+<center>
+    <h1 style="color:green">Welcome To Coursera.</h1>
+    <br />
+    <h2>Tommorrow Belongs To those Who prepare for it today.</h2>
+</center>
+<br />
+<br />
+<br />
+<br />
+<br />
+<center>
+	<div style="font-size:25px;">
+		@Html.ActionLink("Login", "Login", "Login",null,new { @class = "btn btn-primary btn-large" })&nbsp;&nbsp;&nbsp;&nbsp;
+		@Html.ActionLink("Register As Student", "StudentReg", "Register",null,new { @class = "btn btn-primary btn-large" })&nbsp;&nbsp;&nbsp;&nbsp;
+		@Html.ActionLink("Register As Teacher", "TeacherReg", "Register",null,new { @class = "btn btn-primary btn-large" }	)&nbsp;&nbsp;&nbsp;&nbsp;
+	</div>
+</center>

@@ -1,0 +1,47 @@
+﻿@model WebApplication5.Models.Video
+
+@{
+    ViewBag.Title = "Index";
+}
+	<head>
+		<link rel="stylesheet" href="@Url.Content("~/Content/style.css")" />
+
+	</head>
+<h2>Index</h2>
+
+@using (Html.BeginForm("Index", "Video", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.videoName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.videoName, new { htmlAttributes = new { @class = "form-control", @type = "file" } })
+                @Html.ValidationMessageFor(model => model.videoName, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+      
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Upload" class="btn btn-primary" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10 text-success">
+                @ViewBag.FileStatus
+            </div>
+            <p style="color:red">
+                @ViewBag.ermsg
+            </p>
+        </div>
+        @Html.ActionLink("View All Videoes", "ViewVideo", "Video", new { id=Session["courseId"]},new {@class="viewvideos" })
+        
+    </div>
+}
+
+
+
+

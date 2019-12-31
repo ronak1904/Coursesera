@@ -1,0 +1,36 @@
+﻿@model IEnumerable<WebApplication5.Models.Question>
+
+@{
+    ViewBag.Title = "TestBegin";
+}
+	<head>
+		<link rel="stylesheet" href="@Url.Content("~/Content/mystyle.css")" />
+
+	</head>
+
+<h2>TestBegin</h2>
+@using (Html.BeginForm("TestBegin", "Tests", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    foreach (var x in Model)
+    {
+        <p>@x.qText</p>
+
+        @Html.RadioButton(x.qId.ToString(), x.op1) @x.op1
+        <br />
+        @Html.RadioButton(x.qId.ToString(), x.op2)
+        @x.op2
+        <br />
+        @Html.RadioButton(x.qId.ToString(), x.op3)@x.op3
+        <br />
+        @Html.RadioButton(x.qId.ToString(), x.op4)@x.op4
+        <br />
+
+    }
+	<br />
+	<br />
+    <div class="form-group">
+        <div>
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </div>
+    </div>
+}

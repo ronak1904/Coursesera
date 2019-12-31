@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "TeacherHome";
+}
+	<head>
+		<link rel="stylesheet" href="@Url.Content("~/Content/mystyle.css")" />
+
+	</head>
+<br />
+
+<center><h2> Welcome @Session["userName"]</h2></center>
+<br />
+<center>
+	<div class="container-fluid"">
+		<h1 style="margin-right:10px;">@Html.ActionLink("View Courses Created", "Index", "Courses", null, new { @class = "btn btn-primary btn-large" })</h1>
+
+
+		@Html.ActionLink("Create Course", "Create", "Courses", null, new { @class = "btn btn-primary btn-large" })
+	</div>
+</center>

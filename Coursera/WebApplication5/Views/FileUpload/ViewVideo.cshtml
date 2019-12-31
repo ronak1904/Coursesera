@@ -1,0 +1,95 @@
+﻿@model IEnumerable<WebApplication5.Models.FileDetails>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="@Url.Content("~/Content/mystyle.css")" />
+
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				@Html.ActionLink("Coursera", "Intro", "Home", new { area = "" }, new { @class = "navbar-brand" })
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li>@Html.ActionLink("Home", "Index", "Home")</li>
+
+					<li>@Html.ActionLink("About", "About", "Home")</li>
+					<li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+				</ul>
+				@{
+					if ((bool)System.Web.HttpContext.Current.Application["lin"] == true)
+					{
+						<ul class="nav navbar-nav navbar-right">
+
+							<li> @Html.ActionLink("Logout", "LogOut", "Login", null, new { @class = "btn btn-dark btn-large" })</li>
+						</ul>
+					}
+				}
+
+			</div>
+		</div>
+		</div>
+		<!--<div>
+			<iframe width="420" height="315" src="~/Content/Files/small.mp4" frameborder="0"></iframe>
+		</div>-->
+		
+			<table class="table" style="font-size:25px;margin-top:150px;text-align:left">
+				<tr>
+					<th>File Name</th>
+					
+					<th>Actions</th>
+
+
+				</tr>
+				@{
+
+
+					foreach (var x in Model)
+					{
+
+
+
+
+						<tr>
+							<td>@x.path.Substring(66);</td>
+							
+							<td>@Html.ActionLink("Download", "Download", "FileUpload", new { id = x.fileId }, null)</td>&nbsp;&nbsp;&nbsp;&nbsp;
+							<td>
+								@if (Session["userType"].Equals("Teacher"))
+								{
+									@Html.ActionLink("Delete", "Delete", "FileUpload", x, null)
+								}
+								<!-- <a href="/FileUpload/Download">Download x.path.Substring(61)</a>-->
+							</td>
+						</tr>
+
+
+
+					}
+					<!--<div class="col-xs-6">
+						// Play Video Here ???????
+						<embed width="100%" height="500" name="plugin" src="Url.Action("Media","FileUpload",new { id = 2 })" type="video/mp4">
+					</div>-->
+				}
+			</table>
+		
+</body>
+</html>

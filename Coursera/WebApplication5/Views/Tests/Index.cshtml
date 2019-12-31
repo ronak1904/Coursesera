@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WebApplication5.Models.Test>
+
+@{
+	ViewBag.Title = "Index";
+}
+	<head>
+		<link rel="stylesheet" href="@Url.Content("~/Content/mystyle.css")" />
+
+	</head>
+
+<table class="table" style="margin-top:100px;">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.testName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.testName)
+        </td>
+        <td>
+
+            @if (Session["userType"].Equals("Student"))
+            {
+                @Html.ActionLink("Start Test", "TestBegin", "Tests", new { id = item.testId }, null)
+            }
+            else
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.testId });<p style="display:inline">&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                @Html.ActionLink("Delete", "Delete", new { id = item.testId })<p style="display:inline">&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                @Html.ActionLink("View Questions", "Index", "Questions",new { id = item.testId },null)<p style="display:inline">&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                @Html.ActionLink("Add Questions", "Create", "Questions", new { id = item.testId }, null)
+
+            }
+        </td>
+    </tr>
+}
+
+</table>

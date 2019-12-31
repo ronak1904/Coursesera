@@ -1,0 +1,50 @@
+﻿@model IEnumerable<WebApplication5.Models.Course>
+
+@{
+    ViewBag.Title = "StudentHome";
+}
+<head>
+    <link rel="stylesheet" href="@Url.Content("~/Content/mystyle.css")" />
+
+</head>
+@{ 
+    if (Session["userType"] == null)
+
+    {
+        Response.Redirect("/Courses/Errorage");
+    }
+
+    }
+<p style="font-size:25px;margin-top:15px;">@Html.ActionLink("View Subscribed Courses", "ViewSubs", "Courses", null, null)</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th></th>
+    </tr>
+
+    <br />
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.ActionLink("Go for a Test", "Index", "Tests", new { id = item.courseId }, null)&nbsp;&nbsp;&nbsp;&nbsp;
+                @Html.ActionLink("View Files", "ViewVideo", "FileUpload", new { id = item.courseId }, null)&nbsp;&nbsp;&nbsp;&nbsp;
+                @Html.ActionLink("View Videoes", "ViewVideo", "Video", new { id = item.courseId }, null)&nbsp;&nbsp;&nbsp;&nbsp;
+                @Html.ActionLink("Subscribe", "Subs", "Courses", new { id = item.courseId }, null)&nbsp;&nbsp;&nbsp;&nbsp;
+
+            </td>
+        </tr>
+    }
+
+</table>

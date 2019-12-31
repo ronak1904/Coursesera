@@ -1,0 +1,54 @@
+﻿@model WebApplication5.Models.FileDetails
+
+@{
+    ViewBag.Title = "Index";
+}
+	<head>
+		<link rel="stylesheet" href="@Url.Content("~/Content/mystyle.css")" />
+
+	</head>
+<h2>Upload Your File Here</h2>
+@using (Html.BeginForm("Index", "FileUpload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.fileName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.fileName, new { htmlAttributes = new { @class = "form-control", @type = "file" } })
+            @Html.ValidationMessageFor(model => model.fileName, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+    <!--<div class="form-group">
+        Html.LabelFor(model => model.fileType, htmlAttributes: new { class = "control-label col-md-2" })
+        <div class="col-md-10">
+            Html.EditorFor(model => model.fileType, new { htmlAttributes = new { class = "form-control" } })
+            Html.ValidationMessageFor(model => model.fileType, "", new { class = "text-danger" })
+
+        </div>
+    </div>-->
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Upload" class="btn btn-primary" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10 text-success">
+            @ViewBag.FileStatus
+            <p style="color:red">
+                @ViewBag.ermsg
+            </p>
+        </div>
+    </div>
+    @Html.ActionLink("View All Files Uploaded", "ViewVideo", "FileUpload", new { id=Session["courseId"]}, null)
+    <!--<iframe width="420" height="315" src="~/Content/Files/small.mp4" frameborder="0"></iframe>
+        -->
+</div>
+}
+
+
+
+

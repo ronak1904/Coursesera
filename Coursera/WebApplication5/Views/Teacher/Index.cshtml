@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WebApplication5.Models.Teacher>
+
+@{
+    ViewBag.Title = "Index";
+}
+	<head>
+		<link rel="stylesheet" href="@Url.Content("~/Content/mystyle.css")" />
+
+	</head>
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Fullname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mobileno)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fullname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mobileno)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.tId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.tId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.tId })
+        </td>
+    </tr>
+}
+
+</table>

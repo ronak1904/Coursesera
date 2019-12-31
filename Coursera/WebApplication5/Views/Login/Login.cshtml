@@ -1,0 +1,76 @@
+﻿@model WebApplication5.Models.Login
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+<br />
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="@Url.Content("~/Content/mystyle.css")" />
+	
+</head>
+
+
+
+		@using (Html.BeginForm())
+		{
+			@Html.AntiForgeryToken()
+
+		<div>
+			<h4>  </h4>
+			
+            <div class="form-group">
+
+                <!--<b>Utype:(Student or Teacher)</b>
+
+    Html.EditorFor(model => model.uType, new { htmlAttributes = new { class = "form-control" } })-->
+
+                @Html.DropDownListFor(model => model.uType, new List<SelectListItem>
+    {
+       new SelectListItem{ Text="Student", Value = "Student" },
+       new SelectListItem{ Text="Teacher", Value = "Teacher" },
+    },new { @class = "textbox" })
+
+            </div>
+
+			<div class="form-group">
+
+				<b>Username:</b> @Html.EditorFor(model => model.uName, new
+{
+htmlAttributes = new
+{
+@class = "form-control"
+}
+})
+			</div>
+
+			<div class="form-group">
+
+				<b>Password:</b>   @Html.EditorFor(model => model.pwd, new
+{
+htmlAttributes = new
+{
+@class = "form-control"
+}
+})
+			</div>
+
+			<div class="form-group">
+				<input type="submit" value="Login" class="btn btn-primary" />
+			</div>
+		</div>
+		}
+		<p style="color:red">
+			@ViewBag.msg
+		</p>
+		@Html.ActionLink("Register As Student", "StudentReg", "Register")|
+		@Html.ActionLink("Register As Teacher", "TeacherReg", "Register")
+	
+</html>
+
+
